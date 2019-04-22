@@ -10,7 +10,12 @@
                 <StackLayout class="hr-light m-t-20 m-b-20" style="width: 60%"></StackLayout>
                 <Button text="Ingresar como invitado" class="btn btn-md btn-grey" @tap="$navigateTo(searchPage)" style="width: 60%; color: #222B54"></Button>
                 <StackLayout class="hr-light m-t-20 m-b-20"  style="width: 60%"></StackLayout>
-                <Button text="Ingresa usando Facebook" class="btn btn-md btn-primary" @tap="$navigateTo(searchPage)" style="width: 60%"></Button>
+                <Button class="btn btn-md btn-primary fa"  @tap="$navigateTo(searchPage)" style="width: 60%">
+                    <formattedString>
+                        <span class="fa" :text="'fa-facebook-official' | fonticon" style="margin-right: 5px;font-size: 20px"></span>
+                        <span text="Ingresa Usando Facebook" style="margin-left: 20px"></span>
+                    </formattedString>
+                </Button>
                 <Button text="Crear cuenta gratis" class="btn btn-md btn-orange" @tap="$navigateTo(searchPage)" style="width: 60%"></Button>
             </StackLayout>
             <StackLayout verticalAlignment="center" horizontalAlignment="center" dock="bottom" height="8%" width="100%;" style="background-color:lightgray">
