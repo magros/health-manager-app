@@ -6,18 +6,10 @@
                     style="width: 100%; background-color: white; border-bottom-color: black; border-bottom-width: 2px"
                     orientation="horizontal" horizontalAlignment="center" dock="top" height="80">
 
-                <StackLayout class="btn btn-md btn-primary fa"
-                             style="background-color: #FF6000; color: white; width: 25%; padding: 20px 35px;"
-                             @tap="$navigateTo(searchPage)" orientation="horizontal"
-                             verticalAlignment="middle">
-                    <!--<formattedString>-->
-                    <Label class="fa" :text="'fa-map' | fonticon" style="font-size: 14px;padding-right: 8px"></Label>
-                    <Label text="MAPA" style=""></Label>
-                    <!--</formattedString>-->
+                <StackLayout orientation="horizontal" class="switch-section">
+                    <Button @tap="navigateToMap()" text="MAPA" class="switch-button" ></Button>
+                    <Button @tap="navigateToFilters()" text="FILTRAR BÚSQUEDA" class="filter-button"></Button>
                 </StackLayout>
-
-                <Button class="btn btn-md btn-primary" @tap="$navigateTo(searchPage)" text="FILTRAR BÚSQUEDA"
-                        style="width: 55%;color: black; background-color: #D1D1D1;"></Button>
             </StackLayout>
             <ScrollView width="100%" height="100%" backgroundColor="red" dock="bottom" orientation="vertical">
                 <StackLayout style="width: 100%; background-color: white" height="100%" orientation="vertical">
@@ -48,14 +40,21 @@
 </template>
 
 <script>
-    import TopBar from './TopBar';
-
+    import TopBar from './shared/TopBar';
+    import MapSearch from './search/map/MapSearch'
+    import Search from '../components/search/Search'
     export default {
         name: 'Results',
 
         methods: {
             onButtonTap() {
                 console.log('button clicked');
+            },
+            navigateToMap() {
+                this.$navigateTo(MapSearch)
+            },
+            navigateToFilters() {
+                this.$navigateTo(Search)
             }
         },
         components: {
@@ -98,5 +97,15 @@
         /*font-size: 24;*/
         vertical-align: middle;
         width: 80%;
+    }
+
+    .switch-button {
+        background-color: #FF6000;
+        color: white;
+        height: 45;
+    }
+
+    .filter-button {
+        height: 45;
     }
 </style>

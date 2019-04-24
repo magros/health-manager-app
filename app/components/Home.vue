@@ -6,7 +6,7 @@
                 <Label text="Ingresa tu contraseña" class="c-white m-t-20 m-b-10 text-center"></Label>
                 <TextField text="" class="text-field m-t-15"></TextField>
                 <TextField text="" class="text-field m-t-15"></TextField>
-                <Button text="Ingresar" id="loginBtn" class="btn btn-primary" @tap="$navigateTo(resultsPage)"></Button>
+                <Button text="Ingresar" id="loginBtn" class="btn btn-primary" @tap="$navigateTo(mapSearch)"></Button>
                 <StackLayout class="hr-light m-t-20 m-b-20" style="width: 60%"></StackLayout>
                 <Button text="Ingresar como invitado" class="btn btn-md btn-grey" @tap="$navigateTo(resultsPage)" style="width: 60%; color: #222B54"></Button>
                 <StackLayout class="hr-light m-t-20 m-b-20"  style="width: 60%"></StackLayout>
@@ -33,6 +33,7 @@ import Search from './search/Search';
 import Register from './auth/Register'
 import AppointmentConfirmation from './medical-appointment/AppointmentConfirmation';
 import Results from './Results';
+import MapSearch from './search/map/MapSearch'
 export default {
     methods: {
         onButtonTap() {
@@ -47,8 +48,9 @@ export default {
         return {
             searchPage: Search,
             registerPage: Register,
-            appointmentConfimation: AppointmentConfirmation
-            resultsPage: Results
+            appointmentConfimation: AppointmentConfirmation,
+            resultsPage: Results,
+            mapSearch: MapSearch
         }
     },
     mounted() {

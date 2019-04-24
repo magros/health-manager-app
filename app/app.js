@@ -30,6 +30,8 @@ Vue.registerElement('CheckBox', () => require('nativescript-checkbox').CheckBox,
     event: 'checkedChange'
 })
 
+Vue.registerElement('MapView', () => require('nativescript-google-maps-sdk').MapView)
+
 Vue.prototype.$routes = routes
 
 new Vue({
