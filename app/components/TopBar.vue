@@ -1,7 +1,7 @@
 <template>
     <ActionBar style="background-color: #00C3B0; box-shadow: 0 4px 2px -2px gray;" >
         <DockLayout verticalAlignment="center" horizontalAlignment="left" stretchLastChild="true">
-            <Image dock="left" src="res://icon" width="5%" height="40" verticalAlignment="center"></Image>
+            <Image dock="left" src="res://icon" width="5%" height="40" verticalAlignment="center" @tap="$navigateTo(homePage)"></Image>
             <StackLayout dock="left" orientation="horizontal" horizontalAlignment="right" verticalAlignment="center" width="95%">
                 <Label class="fa" :text="'fa-search' | fonticon"></Label>
                 <Label class="fa" :text="'fa-heart' | fonticon"></Label>
@@ -12,9 +12,15 @@
 </template>
 
 <script>
+    import Home from './Home';
 
     export default {
-        name: 'TopBar'
+        name: 'TopBar',
+        data() {
+            return {
+                homePage: Home
+            }
+        }
     };
 </script>
 

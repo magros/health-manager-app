@@ -11,6 +11,7 @@ Vue.filter('fonticon', fonticon);
 
 import Home from "./components/Home";
 import Search from "./components/Search";
+import Results from "./components/Results";
 
 // Vue.options._base = Vue;
 // Vue.use(VueDevtools);
@@ -24,6 +25,6 @@ new Vue({
         </Frame>`,
 
     components: {
-        Search, Home,
+        Search, Home, Results
     },
 }).$start();
