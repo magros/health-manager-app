@@ -13,6 +13,7 @@
   "repository": "<fill-your-repository-here>",
   "dependencies": {
     "@vue/devtools": "^5.1.0",
+    "nativescript-filter-select": "^1.2.9",
     "nativescript-fonticon": "^2.0.0",
     "nativescript-socket.io": "^0.10.1",
     "nativescript-socketio": "^3.2.1",
