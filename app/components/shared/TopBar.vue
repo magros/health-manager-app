@@ -13,10 +13,17 @@
 
 <script>
 import sideDrawer from '../../mixins/side-drawer';
+import Home from './Home';
 
     export default {
         name: 'TopBar',
-        mixins: [sideDrawer]
+        mixins: [sideDrawer],
+        data() {
+            return {
+                homePage: Home
+            }
+        }
+
     };
 </script>
 

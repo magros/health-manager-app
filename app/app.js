@@ -1,4 +1,5 @@
 import Vue from "nativescript-vue";
+Vue.registerElement('FilterSelect', ()=> require('nativescript-filter-select').FilterSelect);
 // import VueDevtools from 'nativescript-vue-devtools'
 import {TNSFontIcon, fonticon} from 'nativescript-fonticon';
 TNSFontIcon.debug = true;
@@ -8,13 +9,16 @@ TNSFontIcon.paths = {
 TNSFontIcon.loadCss();
 Vue.filter('fonticon', fonticon);
 
-
 import Home from "./components/Home";
 import Search from "./components/search/Search";
 import SideDrawer from './components/shared/SideDrawer'
 import DrawerContent from './components/shared/drawer/DrawerContent'
+import Results from "./components/Results";
+
 import routes from "./router"
 import store from './store'
+
+
 
 // Vue.options._base = Vue;
 // Vue.use(VueDevtools);
@@ -45,6 +49,6 @@ new Vue({
     //     </Frame>`,
 
     components: {
-        Search, Home,
+        Search, Home, Results
     },
 }).$start();

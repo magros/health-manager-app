@@ -6,11 +6,11 @@
                 <Label text="Ingresa tu contraseña" class="c-white m-t-20 m-b-10 text-center"></Label>
                 <TextField text="" class="text-field m-t-15"></TextField>
                 <TextField text="" class="text-field m-t-15"></TextField>
-                <Button text="Ingresar" id="loginBtn" class="btn btn-primary" @tap="$navigateTo(searchPage)"></Button>
+                <Button text="Ingresar" id="loginBtn" class="btn btn-primary" @tap="$navigateTo(resultsPage)"></Button>
                 <StackLayout class="hr-light m-t-20 m-b-20" style="width: 60%"></StackLayout>
-                <Button text="Ingresar como invitado" class="btn btn-md btn-grey" @tap="$navigateTo(appointmentConfimation)" style="width: 60%; color: #222B54"></Button>
+                <Button text="Ingresar como invitado" class="btn btn-md btn-grey" @tap="$navigateTo(resultsPage)" style="width: 60%; color: #222B54"></Button>
                 <StackLayout class="hr-light m-t-20 m-b-20"  style="width: 60%"></StackLayout>
-                <Button class="btn btn-md btn-primary fa"  @tap="$navigateTo(searchPage)" style="width: 60%">
+                <Button class="btn btn-md btn-primary fa"  @tap="$navigateTo(resultsPage)" style="width: 60%">
                     <formattedString>
                         <span class="fa" :text="'fa-facebook-official' | fonticon" style="margin-right: 5px;font-size: 20px"></span>
                         <span text="Ingresa Usando Facebook" style="margin-left: 20px"></span>
@@ -32,6 +32,7 @@
 import Search from './search/Search';
 import Register from './auth/Register'
 import AppointmentConfirmation from './medical-appointment/AppointmentConfirmation';
+import Results from './Results';
 export default {
     methods: {
         onButtonTap() {
@@ -47,6 +48,7 @@ export default {
             searchPage: Search,
             registerPage: Register,
             appointmentConfimation: AppointmentConfirmation
+            resultsPage: Results
         }
     },
     mounted() {
