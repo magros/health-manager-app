@@ -8,7 +8,7 @@
 </template>
 
 <script>
-    import TopBar from './TopBar';
+    import TopBar from '../shared/TopBar';
 
     export default {
         name: 'Search',
@@ -19,13 +19,21 @@
         },
         components: {
             TopBar
+        },
+        data() {
+            return {
+                items: [
+                    'Opcion 1',
+                    'Opcion 2'
+                ]
+            }
         }
     };
 </script>
 
 <style scoped lang="scss">
-    @import '../app-variables';
-    @import '../app-common';
+    @import '../../app-variables';
+    @import '../../app-common';
 
     .page{
         background-color: white;

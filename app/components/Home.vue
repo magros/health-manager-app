@@ -8,7 +8,7 @@
                 <TextField text="" class="text-field m-t-15"></TextField>
                 <Button text="Ingresar" id="loginBtn" class="btn btn-primary" @tap="$navigateTo(searchPage)"></Button>
                 <StackLayout class="hr-light m-t-20 m-b-20" style="width: 60%"></StackLayout>
-                <Button text="Ingresar como invitado" class="btn btn-md btn-grey" @tap="$navigateTo(searchPage)" style="width: 60%; color: #222B54"></Button>
+                <Button text="Ingresar como invitado" class="btn btn-md btn-grey" @tap="$navigateTo(appointmentConfimation)" style="width: 60%; color: #222B54"></Button>
                 <StackLayout class="hr-light m-t-20 m-b-20"  style="width: 60%"></StackLayout>
                 <Button class="btn btn-md btn-primary fa"  @tap="$navigateTo(searchPage)" style="width: 60%">
                     <formattedString>
@@ -16,7 +16,7 @@
                         <span text="Ingresa Usando Facebook" style="margin-left: 20px"></span>
                     </formattedString>
                 </Button>
-                <Button text="Crear cuenta gratis" class="btn btn-md btn-orange" @tap="$navigateTo(searchPage)" style="width: 60%"></Button>
+                <Button text="Crear cuenta gratis" class="btn btn-md btn-orange" @tap="$navigateTo(registerPage)" style="width: 60%"></Button>
             </StackLayout>
             <StackLayout verticalAlignment="center" horizontalAlignment="center" dock="bottom" height="8%" width="100%;" style="background-color:lightgray">
                 <label style="text-align: center;width: 100%" verticalAlignment="center">
@@ -29,20 +29,30 @@
 </template>
 
 <script>
-    import Search from './Search';
-
-    export default {
-        methods: {
-            onButtonTap() {
-                console.log('button clicked');
-            }
+import Search from './search/Search';
+import Register from './auth/Register'
+import AppointmentConfirmation from './medical-appointment/AppointmentConfirmation';
+export default {
+    methods: {
+        onButtonTap() {
+            console.log('button clicked');
         },
-        data() {
-            return {
-                searchPage: Search
-            }
+        navigateToSearch() {
+            this.$state.dispatch('enableGestures')
+            this.$navigate(this.searchPage)
         }
-    };
+    },
+    data() {
+        return {
+            searchPage: Search,
+            registerPage: Register,
+            appointmentConfimation: AppointmentConfirmation
+        }
+    },
+    mounted() {
+        this.$store.dispatch('disableGestures')
+    }
+};
 </script>
 
 <style scoped lang="scss">

@@ -10,18 +10,39 @@ Vue.filter('fonticon', fonticon);
 
 
 import Home from "./components/Home";
-import Search from "./components/Search";
+import Search from "./components/search/Search";
+import SideDrawer from './components/shared/SideDrawer'
+import DrawerContent from './components/shared/drawer/DrawerContent'
+import routes from "./router"
+import store from './store'
 
 // Vue.options._base = Vue;
 // Vue.use(VueDevtools);
 // Vue.use(VueDevtools, { host: '192.168.1.64' });
 
-new Vue({
+Vue.registerElement('RadSideDrawer', () => require('nativescript-ui-sidedrawer').RadSideDrawer)
+Vue.registerElement('CheckBox', () => require('nativescript-checkbox').CheckBox, {
+    prop: 'checked',
+    event: 'checkedChange'
+})
 
-    template: `
-        <Frame>
-            <Home />
-        </Frame>`,
+Vue.prototype.$routes = routes
+
+new Vue({
+    store,
+    render(h) {
+        return h(
+            SideDrawer,
+            [
+                h(DrawerContent, {slot: 'drawerContent'}),
+                h(routes.Home, {slot: 'mainContent'})
+            ]
+        )
+    },
+    // template: `
+    //     <Frame>
+    //         <Home />
+    //     </Frame>`,
 
     components: {
         Search, Home,
