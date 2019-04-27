@@ -1,41 +1,51 @@
 <template>
     <Page class="page">
         <TopBar></TopBar>
-        <StackLayout style="width: 80%" horizontalAlignment="center">
+        <StackLayout style="width: 80%; padding: 30px 0">
             <Label class="field-label" text="ESPECIALIDAD"></Label>
             <FilterSelect :items="specialities"
-                          class="filter-select"
                           horizontalAlignment="left"
-                          style="width: 100%"
+                          class="filter-select"
+                          style="width: 100%; text-align: left"
                           hint="Selecciona una especialidad"
-                          modal_title="Countries"
+                          searchHint="Buscar"
+                          modal_title="Especialidad"
+                          closeText="Cerrar"
+                          clearText="Limpiar"
                           search_param="name"
                           render="drop"
                           primary_key="code">
             </FilterSelect>
+
+            <Label class="field-label" text="ASEGURADORA"></Label>
+            <FilterSelect :items="healthInsurance"
+                          class="filter-select"
+                          style="width: 100%"
+                          hint="Selecciona una aseguradora"
+                          searchHint="Buscar"
+                          modal_title="Aseguradora"
+                          closeText="Cerrar"
+                          clearText="Limpiar"
+                          search_param="name"
+                          render="drop"
+                          primary_key="code">
+            </FilterSelect>
+
+
             <Label class="field-label" text="UBICACIÓN"></Label>
-            <FilterSelect :items="specialities"
+            <FilterSelect :items="state"
                           class="filter-select"
-                          horizontalAlignment="left"
                           style="width: 100%"
-                          hint="Selecciona tu ubicación"
-                          modal_title="Countries"
+                          hint="Selecciona una ubicación"
+                          searchHint="Buscar"
+                          modal_title="Ubicación"
+                          closeText="Cerrar"
+                          clearText="Limpiar"
                           search_param="name"
                           render="drop"
                           primary_key="code">
             </FilterSelect>
-            <Label class="field-label" text="TIPO DE BUSQUEDA"></Label>
-            <FilterSelect :items="specialities"
-                          class="filter-select"
-                          horizontalAlignment="left"
-                          style="width: 100%"
-                          hint="Selecciona mapa o lista"
-                          modal_title="Countries"
-                          search_param="name"
-                          render="drop"
-                          primary_key="code">
-            </FilterSelect>
-            <Button class="search-btn" text="BUSCAR"></Button>
+
         </StackLayout>
     </Page>
 </template>
@@ -60,7 +70,9 @@
                     'Opcion 1',
                     'Opcion 2'
                 ],
-                specialities: [{name: 'Dentista', code: 'dt'},{name: 'Cirujano', code: 'cj'}],
+                specialities: [{name: 'Dentista', code: 'dt'}, {name: 'Cirujano', code: 'cj'}],
+                healthInsurance: [{name: 'AXA', code: 'dt'}, {name: 'tor', code: 'cj'}],
+                state: [{name: 'Quéretaro', code: 'dt'}, {name: 'Guanajuato', code: 'cj'}],
                 selectedListPickerIndex: null
             }
         }
@@ -71,27 +83,11 @@
     @import '../../app-variables';
     @import '../../app-common';
 
-    .page{
-        background-color: white;
-    }
-    .info {
-        font-size: 30;
-        color: white;
-    }
-    .text-field{
-        background-color: white;
-        border-color: lightgray;
-    }
-    .btn-grey{
-        background-color: #D0D0D0;
-        border-radius: 1;
-        color: white;
-        /*font-size: 24;*/
-        vertical-align: middle;
-        width: 80%;
-    }
-
-    .search-btn {
-        background-color: #00C3B0;
+    .field-label {
+        color: black;
+        font-size: 10px;
+        font-weight: bold;
+        padding-bottom: 5px;
+        margin-top: 35px;
     }
 </style>

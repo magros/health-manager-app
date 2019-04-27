@@ -1,71 +1,106 @@
 <template>
-    <Page class="page" actionBarHidden="true">
-        <DockLayout>
-            <StackLayout verticalAlignment="top" horizontalAlignment="center" dock="top" width="100%" height="92%">
-                <Label class="h2 c-white text-center" style="color: white; margin-top: 90px" text="HealthManager"></Label>
-                <Label text="Ingresa tu contraseña" class="c-white m-t-20 m-b-10 text-center"></Label>
-                <TextField text="" class="text-field m-t-15"></TextField>
-                <TextField text="" class="text-field m-t-15"></TextField>
-                <Button text="Ingresar" id="loginBtn" class="btn btn-primary" @tap="$navigateTo(mapSearch)"></Button>
-                <StackLayout class="hr-light m-t-20 m-b-20" style="width: 60%"></StackLayout>
-                <Button text="Ingresar como invitado" class="btn btn-md btn-grey" @tap="$navigateTo(resultsPage)" style="width: 60%; color: #222B54"></Button>
-                <StackLayout class="hr-light m-t-20 m-b-20"  style="width: 60%"></StackLayout>
-                <Button class="btn btn-md btn-primary fa"  @tap="$navigateTo(resultsPage)" style="width: 60%">
-                    <formattedString>
-                        <span class="fa" :text="'fa-facebook-official' | fonticon" style="margin-right: 5px;font-size: 20px"></span>
-                        <span text="Ingresa Usando Facebook" style="margin-left: 20px"></span>
-                    </formattedString>
-                </Button>
-                <Button text="Crear cuenta gratis" class="btn btn-md btn-orange" @tap="$navigateTo(registerPage)" style="width: 60%"></Button>
-            </StackLayout>
-            <StackLayout verticalAlignment="center" horizontalAlignment="center" dock="bottom" height="8%" width="100%;" style="background-color:lightgray">
-                <label style="text-align: center;width: 100%" verticalAlignment="center">
-                    AVISO DE PRIVACIDAD
-                </label>
-            </StackLayout>
-        </DockLayout>
+    <Page class="page" actionBarHidden="true" margin="0">
+        <ScrollView height="100%">
+            <DockLayout stretchLastChild="false">
+                <StackLayout dock="top" width="100%">
+                    <StackLayout verticalAlignment="top" horizontalAlignment="center">
+                        <StackLayout verticalAlignment="center" horizontalAlignment="center" class="text-center m-t-10">
+                            <Image src="~/assets/logo.png" stretch="none"></Image>
+                        </StackLayout>
+                        <Label class="h2 c-white text-center text-white m-t-15" text="HealthManager"></Label>
+                        <Label text="Ingresa tu contraseña" class="c-white m-t-10 text-center"></Label>
 
+                        <TextField text="" class="text-field m-t-15"></TextField>
+                        <TextField text="" class="text-field m-t-15"></TextField>
+
+                        <Button text="Ingresar" id="loginBtn" class="btn btn-blue-dark"
+                                @tap="$navigateTo(searchPage)"></Button>
+
+                        <StackLayout class="hr-light m-t-10 m-b-10 width-60"></StackLayout>
+
+                        <StackLayout class="btn btn-md btn-grey width-60 text-blue-dark"
+                                     verticalAlignment="middle"
+                                     orientation="horizontal"
+                                     @tap="$navigateTo(searchPage)">
+                            <Label class="fa m-r-15" :text="'fa-rocket' | fonticon" verticalAlignment="middle"></Label>
+                            <Label text="Ingresar como invitado" verticalAlignment="middle"></Label>
+                        </StackLayout>
+
+                        <StackLayout class="hr-light m-t-10 m-b-10 width-60"></StackLayout>
+
+                        <StackLayout class="btn btn-md btn-blue-dark width-60"
+                                     orientation="horizontal"
+                                     verticalAlignment="middle"
+                                     @tap="$navigateTo(searchPage)">
+                            <Label class="fa m-r-15" :text="'fa-facebook-official' | fonticon"
+                                   verticalAlignment="middle"></Label>
+                            <Label text="Ingresa Usando Facebook" verticalAlignment="middle"></Label>
+                        </StackLayout>
+
+                        <StackLayout class="btn btn-md btn-orange width-60"
+                                     orientation="horizontal"
+                                     verticalAlignment="middle"
+                                     @tap="$navigateTo(registerPage)">
+                            <Label class="fa m-r-15" :text="'fa-facebook-official' | fonticon"
+                                   verticalAlignment="middle"></Label>
+                            <Label text="Crear cuenta gratis" verticalAlignment="middle"></Label>
+                        </StackLayout>
+
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout dock="bottom"
+                             verticalAlignment="center"
+                             horizontalAlignment="center"
+                             width="100%;"
+                             height="70px"
+                             style="margin: 0"
+                             class="text-center c-bg-white">
+                    <label verticalAlignment="center" width="100%">
+                        AVISO DE PRIVACIDAD
+                    </label>
+                </StackLayout>
+            </DockLayout>
+        </ScrollView>
     </Page>
 </template>
 
 <script>
-import Search from './search/Search';
-import Register from './auth/Register'
-import AppointmentConfirmation from './medical-appointment/AppointmentConfirmation';
-import Results from './Results';
-import MapSearch from './search/map/MapSearch'
-export default {
-    methods: {
-        onButtonTap() {
-            console.log('button clicked');
+    import Search from './search/Search';
+    import Register from './auth/Register'
+    import AppointmentConfirmation from './medical-appointment/AppointmentConfirmation';
+    import Results from './Results';
+    import MapSearch from './search/map/MapSearch'
+
+    export default {
+        methods: {
+            onButtonTap() {
+                console.log('button clicked');
+            },
+            navigateToSearch() {
+                this.$state.dispatch('enableGestures')
+                this.$navigate(this.searchPage)
+            }
         },
-        navigateToSearch() {
-            this.$state.dispatch('enableGestures')
-            this.$navigate(this.searchPage)
+        data() {
+            return {
+                searchPage: Search,
+                registerPage: Register,
+                appointmentConfimation: AppointmentConfirmation,
+                resultsPage: Results,
+                mapSearch: MapSearch
+            }
+        },
+        mounted() {
+            this.$store.dispatch('disableGestures')
         }
-    },
-    data() {
-        return {
-            searchPage: Search,
-            registerPage: Register,
-            appointmentConfimation: AppointmentConfirmation,
-            resultsPage: Results,
-            mapSearch: MapSearch
-        }
-    },
-    mounted() {
-        this.$store.dispatch('disableGestures')
-    }
-};
+    };
 </script>
 
 <style scoped lang="scss">
-    // Start custom common variables
     @import '../app-variables';
 
-    // End custom common variables
-
-    .page{
+    .page {
         background-color: $primary-color;
     }
 
@@ -73,23 +108,18 @@ export default {
         font-size: 30;
         color: white;
     }
-    #loginBtn{
-         margin-top: 15;
+
+    #loginBtn {
+        margin-top: 15;
         border: none;
     }
-    #loginBtn, .text-field{
+
+    #loginBtn, .text-field {
         width: 70%;
     }
-    .text-field{
+
+    .text-field {
         background-color: white;
         border-color: lightgray;
-    }
-    .btn-grey{
-        background-color: #D0D0D0;
-        border-radius: 1;
-        color: white;
-        /*font-size: 24;*/
-        vertical-align: middle;
-        width: 80%;
     }
 </style>

@@ -1,33 +1,63 @@
 <template>
     <Page class="page">
         <TopBar></TopBar>
-        <DockLayout stretchLastChild="false" backgroundColor="#3c495e">
-            <StackLayout
-                    style="width: 100%; background-color: white; border-bottom-color: black; border-bottom-width: 2px"
-                    orientation="horizontal" horizontalAlignment="center" dock="top" height="80">
+        <DockLayout stretchLastChild="false">
+            <StackLayout class="c-bg-white w-100" width="100%"
+                         style="border-bottom-color: #D0D0D0; border-bottom-width: 2px"
+                         orientation="horizontal"
+                         horizontalAlignment="center"
+                         dock="top" height="80">
 
-                <StackLayout orientation="horizontal" class="switch-section">
-                    <Button @tap="navigateToMap()" text="MAPA" class="switch-button" ></Button>
-                    <Button @tap="navigateToFilters()" text="FILTRAR BÚSQUEDA" class="filter-button"></Button>
+                <StackLayout orientation="horizontal">
+
+                    <StackLayout class="btn btn-orange"
+                                 orientation="horizontal"
+                                 verticalAlignment="middle"
+                                 width="30%"
+                                 height="40"
+                                 @tap="navigateToMap()">
+                        <Label class="fa m-r-10" :text="'fa-map' | fonticon" verticalAlignment="middle"></Label>
+                        <Label text="MAPA" verticalAlignment="middle"></Label>
+                    </StackLayout>
+
+                    <Button @tap="navigateToFilters()"
+                            height="40"
+                            width="50%" text="FILTRAR BÚSQUEDA"
+                            class="btn btn-grey text-dark"
+                            color="black"></Button>
                 </StackLayout>
             </StackLayout>
-            <ScrollView width="100%" height="100%" backgroundColor="red" dock="bottom" orientation="vertical">
-                <StackLayout style="width: 100%; background-color: white" height="100%" orientation="vertical">
-                    <StackLayout orientation="horizontal" style="padding: 30px;" verticalAlignment="middle"
-                                 v-for="doctor in doctors">
+
+            <ScrollView width="100%" dock="bottom">
+                <StackLayout>
+                    <StackLayout v-for="doctor in doctors" orientation="horizontal"
+                                 class="doctor"
+                                 style="padding: 30px;"
+                                 verticalAlignment="middle">
                         <Image src="~/assets/doctor.png" stretch="none"></Image>
-                        <StackLayout style="margin-left: 20px ">
-                            <Label text="ROGELIO MENDOZA" style="color: black"></Label>
-                            <Label text="DENTISTA ODONTOLOGO" style="color: black"></Label>
-                            <Label text="Ixtapalapa - sinatel: Consulta privada" style="color: black"></Label>
-                            <Label style="width: 100%; height: 2px; background-color: black; margin-top: 10px; margin-bottom: 10px"></Label>
+                        <StackLayout class="m-l-20">
+                            <Label text="ROGELIO MENDOZA" class="doctor-name"></Label>
+                            <Label text="DENTISTA ODONTOLOGO" class="doctor-speciality"></Label>
+                            <Label text="Iztapalapa - sinatel: Consulta privada"></Label>
+                            <Label class="hr"></Label>
 
-                            <StackLayout orientation="horizontal" verticalAlignment="center" style="" width="100%">
-                                <Button class="btn btn-md btn-primary" text="CONOCER MÁS"
-                                        style="color: white; background-color: #00C3B0; font-size: 9px;padding: 0; padding-right: 50px; padding-left: 50px; margin: 0; margin-top: 5px"
-                                        height="25"></Button>
+                            <StackLayout orientation="horizontal"
+                                         verticalAlignment="center"
+                                         style="vertical-align: center" width="100%">
+
+                                <Button verticalAlignment="center"
+                                        @tap="$navigateTo(Doctor)"
+                                        class="btn" text="CONOCER MÁS"/>
+
+                                <StackLayout orientation="horizontal" class="m-r-10 m-l-10" verticalAlignment="center">
+                                    <Label class="fa" :text="'fa-star' | fonticon" style="color: #DFCA5D; margin-right: 2px"></Label>
+                                    <Label class="fa" :text="'fa-star' | fonticon" style="color: #DFCA5D; margin-right: 2px"></Label>
+                                    <Label class="fa" :text="'fa-star' | fonticon" style="color: #DFCA5D; margin-right: 2px"></Label>
+                                    <Label class="fa" :text="'fa-star' | fonticon" style="color: #DFCA5D; margin-right: 2px"></Label>
+                                    <Label class="fa" :text="'fa-star' | fonticon" style="color: #D0D0D0;"></Label>
+                                </StackLayout>
+                                <Label text="10 opioniones" verticalAlignment="center" style="color: #DFCA5D;font-size: 9px; font-weight: bold"></Label>
                             </StackLayout>
-
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>
@@ -43,6 +73,8 @@
     import TopBar from './shared/TopBar';
     import MapSearch from './search/map/MapSearch'
     import Search from '../components/search/Search'
+    import Doctor from '../components/Doctor'
+
     export default {
         name: 'Results',
 
@@ -62,8 +94,16 @@
         },
         data() {
             return {
+                Doctor,
                 doctors: [
                     {name: 'Dentista', code: 'dt'},
+                    {name: 'Cirujano', code: 'cj'},
+                    {name: 'Cirujano', code: 'cj'},
+                    {name: 'Cirujano', code: 'cj'},
+                    {name: 'Cirujano', code: 'cj'},
+                    {name: 'Cirujano', code: 'cj'},
+                    {name: 'Cirujano', code: 'cj'},
+                    {name: 'Cirujano', code: 'cj'},
                     {name: 'Cirujano', code: 'cj'},
                     {name: 'Cirujano', code: 'cj'},
                 ],
@@ -99,13 +139,40 @@
         width: 80%;
     }
 
-    .switch-button {
-        background-color: #FF6000;
-        color: white;
-        height: 45;
+    .doctor {
+        .doctor-name {
+            font-size: 20px;
+            font-weight: bolder;
+        }
+
+        Label {
+            color: black;
+            font-size: 10px;
+        }
+
+        .doctor-speciality {
+            font-size: 12px;
+            color: #777777;
+        }
+
+        .fa-star {
+            color: #DFCA5D;
+            background-color: #DFCA5D;
+        }
+
+        .btn {
+            background-color: $primary-color;
+            height: 20;
+            font-size: 9px;
+            font-weight: bold;
+            padding: 0;
+            padding-right: 20px;
+            padding-left: 20px;
+            margin: 0;
+        }
     }
 
-    .filter-button {
-        height: 45;
+    Scrollview {
+        background-color: white;
     }
 </style>
