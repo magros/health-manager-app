@@ -38,7 +38,7 @@ new Vue({
             SideDrawer,
             [
                 h(DrawerContent, {slot: 'drawerContent'}),
-                h(routes.Search, {slot: 'mainContent'})
+                h(routes.Home, {slot: 'mainContent'})
             ]
         )
     },

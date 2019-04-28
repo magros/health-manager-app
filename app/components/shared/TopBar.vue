@@ -3,7 +3,9 @@
         <DockLayout verticalAlignment="center" horizontalAlignment="left" stretchLastChild="true">
             <Image dock="left" src="~/assets/logo.png" width="10%" height="50" verticalAlignment="center" @tap="openDrawer()"></Image>
             <StackLayout dock="left" orientation="horizontal" horizontalAlignment="right" verticalAlignment="center" width="90%">
-                <Label class="fa" :text="'fa-search' | fonticon"></Label>
+                <Label class="fa" :text="'fa-search' | fonticon"
+                       @tap="$navigateTo(searchPage)"
+                ></Label>
                 <Label class="fa" :text="'fa-heart' | fonticon"></Label>
                 <Label class="fa" :text="'fa-calendar' | fonticon"></Label>
             </StackLayout>
@@ -14,13 +16,15 @@
 <script>
 import sideDrawer from '../../mixins/side-drawer';
 import Home from '../Home';
+import Search from '../search/Search';
 
     export default {
         name: 'TopBar',
         mixins: [sideDrawer],
         data() {
             return {
-                homePage: Home
+                homePage: Home,
+                searchPage: Search
             }
         }
 
