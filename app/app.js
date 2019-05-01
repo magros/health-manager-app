@@ -38,7 +38,7 @@ new Vue({
             SideDrawer,
             [
                 h(DrawerContent, {slot: 'drawerContent'}),
-                h(routes.Home, {slot: 'mainContent'})
+                h(routes.Calendar, {slot: 'mainContent'})
             ]
         )
     },
