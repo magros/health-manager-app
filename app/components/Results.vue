@@ -142,7 +142,7 @@
     .doctor {
         .doctor-name {
             font-size: 20px;
-            font-weight: bolder;
+            font-weight: bold;
         }
 
         Label {
